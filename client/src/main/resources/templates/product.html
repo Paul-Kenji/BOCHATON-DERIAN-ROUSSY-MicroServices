@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Microservice Client</title>
+
+</head>
+<body>
+<div class="container">
+    <h1>Microservice Client eCommerce</h1>
+    <div class="row">
+        <img th:src="${product.illustration}" class="card-img-top"/>
+        <p th:text="${product.name}"></p>
+        <p th:text="${product.price}"></p>
+    </div>
+    <a id="button_link"><button>Ajouter au panier</button></a>
+    <a th:href="@{|/|}"><button>retour au menu</button></a>
+
+</div>
+</body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var cartId = localStorage.getItem('cartId');
+    var link = "/cart/" + cartId + "/add/[[${product.id}]]";
+
+    document.getElementById('button_link').setAttribute("href", link);
+    /*]]>*/
+</script>
+</html>

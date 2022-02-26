@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Panier</h1>
+<div th:each="product : ${products}" class="col-md-4 my-1">
+    <a th:href="@{|/product/${product.productId}|}" >
+        <p th:text= "${product.name}"></p>
+    </a>
+</div>
+<a th:href="@{|/|}"><button>retour au menu</button></a>
+<a id="linkOrder"><button>valider panier</button></a>
+</body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var cartId = "[[${cartId}]]";
+    var link = "";
+
+    (cartId !== "null") ? localStorage.setItem('cartId', [[${cartId}]]) : cartId = localStorage.getItem('cartId');
+    link = "/orders/" + cartId;
+    document.getElementById('linkOrder').setAttribute("href", link);
+    /*]]>*/
+</script>
+
+</html>
